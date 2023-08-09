@@ -4,28 +4,38 @@ using UnityEngine;
 
 public class Oven : MonoBehaviour
 {
-    public bool isCooking { get; private set; } //encapsulation
-    public bool isDone { get; private set; } //encapsulation
-    private float cookingTime = 5f;
+    public bool p_isCooking { get; private set; } //encapsulation
+    public bool p_isDone { get; private set; } //encapsulation
+    private float p_cookingTime = 5f;
+    public int score; // ?
+    [SerializeField] private ParticleSystem p_particleSystem;
 
-    private void OnMouseDown()
+    public virtual void OnMouseDown()
     {
-        if (!isCooking && !isDone)
+        if (!p_isCooking && !p_isDone)
         {
-            isCooking = true;
+            p_isCooking = true;
             //color = red;
-            Invoke("Cooking", cookingTime);
+            Invoke("Cooking", p_cookingTime);
         }
-        else if(isDone)
+        else if (p_isDone)
         {
             //får ut en paj
-            isDone = false;
+            p_isDone = false;
+            //AddScore(p_particleSystem);
         }
     }
 
-    void Cooking()
+    public virtual void Cooking()
     {
         //color = green;
-        isDone = true;
+        p_isCooking = false;
+        p_isDone = true;
     }
+
+    //public virtual void AddScore(ParticleSystem particleSystem)
+    //{
+    //    particleSystem.Play();
+    //    score += 10;
+    //}
 }
