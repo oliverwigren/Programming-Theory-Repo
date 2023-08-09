@@ -235,9 +235,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   p_particleSystem: {fileID: 0}
-  defaultMaterial: {fileID: 2100000, guid: dbf2cb20f5d9a44219f17ec305b2539c, type: 2}
-  greenMaterial: {fileID: 2100000, guid: 5bdf893e9266d4df58ac30cab2f614b2, type: 2}
-  redMaterial: {fileID: 2100000, guid: e084e16a060ff4ddc930f637168d2049, type: 2}
 --- !u!1 &753183043
 GameObject:
   m_ObjectHideFlags: 0
@@ -450,9 +447,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   score: 0
   p_particleSystem: {fileID: 0}
-  defaultMaterial: {fileID: 0}
-  greenMaterial: {fileID: 0}
-  redMaterial: {fileID: 0}
   s_particleSystem: {fileID: 0}
 --- !u!65 &1663160406
 BoxCollider:
@@ -487,7 +481,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: dbf2cb20f5d9a44219f17ec305b2539c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

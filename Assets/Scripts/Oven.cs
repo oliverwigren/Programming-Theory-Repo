@@ -11,20 +11,22 @@ public class Oven : MonoBehaviour
     public int score; // ?
     [SerializeField] private ParticleSystem p_particleSystem;
 
-    [SerializeField] protected Material defaultMaterial;
-    [SerializeField] protected Material greenMaterial;
-    [SerializeField] protected Material redMaterial;
+    protected Material defaultMaterial;
+    protected Material greenMaterial;
+    protected Material redMaterial;
 
-    //private void Start()
-    //{
-    //    SetUp();
-    //}
+    private void Start()
+    {
+        SetColors();
+        //SetTitle();
+    }
 
-    //public virtual void SetUp()
-    //{
-    //    greenMaterial = Resources.Load("Material/Green.mat", typeof(Material)) as Material;
-    //    redMaterial = Resources.Load("Material/Red.mat", typeof(Material)) as Material;
-    //}
+    private void SetColors()
+    {
+        defaultMaterial = Resources.Load("Material/default", typeof(Material)) as Material;
+        greenMaterial = Resources.Load("Material/Green", typeof(Material)) as Material;
+        redMaterial = Resources.Load("Material/Red", typeof(Material)) as Material;
+    }
 
     public virtual void OnMouseDown()
     {
