@@ -9,24 +9,26 @@ public class BetterOven : Oven //INHERITANCE
     private float s_cookingTime = 3f;
     [SerializeField] private ParticleSystem s_particleSystem;
 
+
     public override void OnMouseDown()
     {
         if (!s_isCooking && !s_isDone)
         {
             s_isCooking = true;
-            //color = red;
-            Invoke("Cooking", s_cookingTime);
+            gameObject.GetComponent<MeshRenderer>().material = redMaterial;
+            Invoke("FinishCooking", s_cookingTime);
         }
-        else if (p_isDone)
+        else if (s_isDone)
         {
             //får ut en paj
             s_isDone = false;
+            gameObject.GetComponent<MeshRenderer>().material = defaultMaterial;
         }
     }
 
-    public override void Cooking()
+    public override void FinishCooking()
     {
-        //color = green;
+        gameObject.GetComponent<MeshRenderer>().material = greenMaterial;
         s_isCooking = false;
         s_isDone = true;
     }
