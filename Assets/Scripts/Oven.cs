@@ -54,13 +54,9 @@ public class Oven : MonoBehaviour
         p_isDone = true;
     }
 
-    public virtual void AddScore(ParticleSystem particleSystem, int points/*, int s_points*/) //ABSTRACTION
+    public virtual void AddScore(ParticleSystem particleSystem, int points) //ABSTRACTION
     {
         particleSystem.Play();
-        //p_score += p_points;
-        // s_score += s_points;
-        // totalScore = p_score + s_score;
-        //scoreText.text = "SCORE: " + p_score;//totalScore;
         gameManager.UpdateScore(points);
     }
 }
