@@ -5,12 +5,11 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    public int totalScore { get; set 
-            //if (value < 0)
-            //{
-            //    Debug.LogError("Total score cannot be a negative number");
-            //}
-        ; } //ENCAPSULATION
+    public int totalScore { set
+        {
+            if (value < 0) { Debug.LogError("score cannot be a negative number");}
+        } 
+    } 
     private Text titleText;
     private Text scoreText;
 
@@ -23,6 +22,8 @@ public class GameManager : MonoBehaviour
     private void SetUI()
     {
         titleText = GameObject.Find("Title").GetComponent<Text>();
+        SaveManager.Instance.LoadName();
+        titleText.text = SaveManager.Instance.name;
         scoreText = GameObject.Find("Score").GetComponent<Text>();
         scoreText.text = "SCORE: 0";
     }
