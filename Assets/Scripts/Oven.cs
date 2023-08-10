@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
+using UnityEngine.UI;
 
 public class Oven : MonoBehaviour
 {
@@ -9,9 +9,11 @@ public class Oven : MonoBehaviour
     public bool p_isDone { get; private set; } //ENCAPSULATION
     private float p_cookingTime = 5f;
     private int p_points = 5;
+    [SerializeField] private ParticleSystem p_particleSystem;
 
     public int score { get; protected set; } //ENCAPSULATION
-    [SerializeField] private ParticleSystem p_particleSystem;
+    private Text titleText;
+    private Text scoreText;
 
     protected Material defaultMaterial;
     protected Material greenMaterial;
@@ -21,7 +23,7 @@ public class Oven : MonoBehaviour
     private void Start()
     {
         SetColors();
-        //SetTitle();
+        SetTitle();
     }
 
     private void SetColors() //ABSTRACTION
@@ -29,6 +31,11 @@ public class Oven : MonoBehaviour
         defaultMaterial = Resources.Load("Material/default", typeof(Material)) as Material;
         greenMaterial = Resources.Load("Material/Green", typeof(Material)) as Material;
         redMaterial = Resources.Load("Material/Red", typeof(Material)) as Material;
+    }
+    private void SetTitle()
+    {
+        titleText = GameObject.Find("Title").GetComponent<Text>();
+        scoreText = GameObject.Find("Score").GetComponent<Text>();
     }
 
     public virtual void OnMouseDown()
@@ -58,5 +65,6 @@ public class Oven : MonoBehaviour
     {
         particleSystem.Play();
         score += points;
+        scoreText.text = "SCORE: " + score;
     }
 }
