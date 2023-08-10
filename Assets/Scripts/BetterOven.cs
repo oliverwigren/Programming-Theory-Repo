@@ -8,7 +8,7 @@ public class BetterOven : Oven //INHERITANCE
 
     public bool s_isCooking { get; private set; } //ENCAPSULATION
     public bool s_isDone { get; private set; } //ENCAPSULATION
-    private int s_points = 10;
+    private int points = 10;
     private float s_cookingTime = 3f;
 
     [SerializeField] private ParticleSystem s_particleSystem;
@@ -23,9 +23,8 @@ public class BetterOven : Oven //INHERITANCE
         }
         else if (s_isDone)
         {
-            Debug.Log("addscore");
-            GetComponentInParent<Oven>().AddScore(s_particleSystem, s_points);
-            //AddScore(s_particleSystem, 0, s_points);
+            GetComponentInParent<Oven>().AddScore(s_particleSystem, points);
+            //AddScore(s_particleSystem, points);
             s_isDone = false;
             gameObject.GetComponent<MeshRenderer>().material = defaultMaterial;
         }
