@@ -4,13 +4,16 @@ using UnityEngine;
 
 public class BetterOven : Oven //INHERITANCE
 {
-    public bool s_isCooking { get; private set; } //encapsulation
-    public bool s_isDone { get; private set; } //encapsulation
+    //The better oven has shorter cooking time and generates more points.
+
+    public bool s_isCooking { get; private set; } //ENCAPSULATION
+    public bool s_isDone { get; private set; } //ENCAPSULATION
+    private int s_points = 10;
     private float s_cookingTime = 3f;
+
     [SerializeField] private ParticleSystem s_particleSystem;
 
-
-    public override void OnMouseDown()
+    public override void OnMouseDown() //POLYMORPHISM
     {
         if (!s_isCooking && !s_isDone)
         {
@@ -20,20 +23,21 @@ public class BetterOven : Oven //INHERITANCE
         }
         else if (s_isDone)
         {
-            //får ut en paj
+            Debug.Log("addscore");
+            AddScore(s_particleSystem, s_points);
             s_isDone = false;
             gameObject.GetComponent<MeshRenderer>().material = defaultMaterial;
         }
     }
 
-    public override void FinishCooking()
+    public override void FinishCooking() //POLYMORPHISM
     {
         gameObject.GetComponent<MeshRenderer>().material = greenMaterial;
         s_isCooking = false;
         s_isDone = true;
     }
 
-    //public override void AddScore(ParticleSystem particleSystem)
+    //public override void AddScore(ParticleSystem particleSystem) //POLYMORPHISM
     //{
     //    base.AddScore(s_particleSystem);
     //}
