@@ -24,7 +24,8 @@ public class BetterOven : Oven //INHERITANCE
         else if (s_isDone)
         {
             Debug.Log("addscore");
-            AddScore(s_particleSystem, s_points);
+            GetComponentInParent<Oven>().AddScore(s_particleSystem, s_points);
+            //AddScore(s_particleSystem, 0, s_points);
             s_isDone = false;
             gameObject.GetComponent<MeshRenderer>().material = defaultMaterial;
         }
@@ -37,8 +38,13 @@ public class BetterOven : Oven //INHERITANCE
         s_isDone = true;
     }
 
-    //public override void AddScore(ParticleSystem particleSystem) //POLYMORPHISM
+    //protected override void AddScore(ParticleSystem particleSystem, int p_points, int s_points) //POLYMORPHISM
     //{
-    //    base.AddScore(s_particleSystem);
+    //    //base.AddScore(s_particleSystem, p_points,s_points);
+    //    particleSystem.Play();
+    //    p_score += p_points;
+    //    s_score += s_points;
+    //    totalScore = p_score + s_score;
+    //    scoreText.text = "SCORE: " + totalScore;
     //}
 }

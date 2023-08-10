@@ -8,12 +8,12 @@ public class Oven : MonoBehaviour
     public bool p_isCooking { get; private set; } //ENCAPSULATION
     public bool p_isDone { get; private set; } //ENCAPSULATION
     private float p_cookingTime = 5f;
-    private int p_points = 5;
-    [SerializeField] private ParticleSystem p_particleSystem;
+    protected int p_points = 5;
+    protected int p_score;
+    protected int s_score;
 
-    public int score { get; protected set; } //ENCAPSULATION
-    private Text titleText;
-    private Text scoreText;
+    [SerializeField] private ParticleSystem p_particleSystem;
+    private GameManager gameManager;
 
     protected Material defaultMaterial;
     protected Material greenMaterial;
@@ -22,8 +22,9 @@ public class Oven : MonoBehaviour
 
     private void Start()
     {
-        SetColors();
+        SetColors(); //ABSTRACTION
         SetTitle();
+        gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
     }
 
     private void SetColors() //ABSTRACTION
@@ -34,8 +35,7 @@ public class Oven : MonoBehaviour
     }
     private void SetTitle()
     {
-        titleText = GameObject.Find("Title").GetComponent<Text>();
-        scoreText = GameObject.Find("Score").GetComponent<Text>();
+        
     }
 
     public virtual void OnMouseDown()
@@ -61,10 +61,13 @@ public class Oven : MonoBehaviour
         p_isDone = true;
     }
 
-    public virtual void AddScore(ParticleSystem particleSystem, int points) //ABSTRACTION
+    public virtual void AddScore(ParticleSystem particleSystem, int p_points/*, int s_points*/) //ABSTRACTION
     {
         particleSystem.Play();
-        score += points;
-        scoreText.text = "SCORE: " + score;
+        //p_score += p_points;
+        // s_score += s_points;
+        // totalScore = p_score + s_score;
+        //scoreText.text = "SCORE: " + p_score;//totalScore;
+        gameManager.UpdateScore(p_points);
     }
 }
